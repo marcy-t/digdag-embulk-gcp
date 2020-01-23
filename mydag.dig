@@ -1,0 +1,15 @@
+timezone: "Asia/Tokyo"
+
+_export:
+  msgstart: I will job start
+  hoge: hogehogehoge
+
++setup1: 
+  echo>: ${msgstart}
+
++step2:
+  echo>: start ${session_time}
+
++step3:
+  sh>: embulk preview bk_config.yml.liquid
+

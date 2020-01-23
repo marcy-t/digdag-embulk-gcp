@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  etl:
+    container_name: digdag-embulk
+    build:
+      context: .
+      dockerfile: digdag-embulk.Dockerfile
+    volumes:
+      - ./:/work
+  gcloud:
+    container_name: gcp-sdk
+    build:
+      context: ./containers/gcloud/
+      dockerfile: gcloud.Dockerfile
+    tty: true
+    volumes:
+      - ./src:/src:cached

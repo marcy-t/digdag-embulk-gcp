@@ -1,0 +1,12 @@
+out:
+  type: gcs
+  bucket: sample-bucket-name
+  path_prefix: logs/out
+  file_ext: .csv
+  auth_method: `private_key` #default
+  service_account_email: '{mail-addres}'
+  p12_keyfile: '/path/to/private/key.p12'
+  formatter:
+    type: csv
+    encoding: UTF-8
+
