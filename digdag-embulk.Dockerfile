@@ -12,7 +12,9 @@ RUN curl -o /bin/embulk --create-dirs -L "http://dl.embulk.org/embulk-latest.jar
 RUN apk add --no-cache libc6-compat \
   && embulk gem install embulk-output-command \
   && embulk gem install embulk-output-gcs \
-  && embulk gem install embulk-input-postgresql
+  && embulk gem install embulk-output-bigquery \
+  && embulk gem install embulk-input-postgresql \ 
+  && embulk gem install embulk-input-mysql
 
 # install digdag
 RUN curl -o /usr/local/bin/digdag --create-dirs -L "https://dl.digdag.io/digdag-latest" && \
@@ -34,5 +36,3 @@ WORKDIR /work
 #     update-locale LANG="en_US.UTF-8"
   
 CMD ["java", "-jar", "/usr/local/bin/digdag", "scheduler"]
-
-

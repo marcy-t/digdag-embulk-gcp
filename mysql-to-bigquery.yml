@@ -1,0 +1,38 @@
+exec:
+    max_threads: 1
+    min_output_tasks: 1 
+  in:
+    type: mysql
+    host: "host.docker.internal"
+    user: "{USER}"
+    password: "{PASSWORD}"
+    database: "{DATABASE}"
+    port: {PORT}
+    select: "{COLUMN}"
+    table: "{TABLE}"
+    # データ内に改行コードが含まれている場合の考慮が必要なのですが、
+    # jsonであればエスケープされるため楽になります
+    parser: 
+     type: json
+  #out: 
+  #  type: stdout
+  out:
+    type: bigquery
+    mode: {APPEND OR REPLACE}
+    location: {LOCATION}
+    gcs_bucket: {GCS BACKET NAME}
+    auto_create_gcs_bucket: true
+    auth_method: json_key
+    json_keyfile: "{KEY PATH}"
+    path_prefix: /tmp/
+    file_ext: .jsonl.gz
+    source_format: NEWLINE_DELIMITED_JSON
+    project: "{GCP PROJECT NAME}"
+    dataset: "{BIGQUERY DATASET NAME}"
+    auto_create_table: true
+    table: "{BIGQUERY TABLE NAME}"
+    schema_file: "./{SCHEMA}.json"
+    formatter: {type: jsonl}
+    encoders:
+    - {type: gzip}
+  
