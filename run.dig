@@ -1,0 +1,44 @@
+timezone: "Asia/Tokyo"
+
+_export:
+  msgstart: MySQL to BigQuery
+
+#schedule: 
+#  minutes_interval>: 2
+
+sla:
+  duration: 00:60:00
+  fail: false
+  +notice:
+    http>: {Slack URL}
+    method: POST
+    content:
+      username: "{Slack}"
+      icon_emoji: ":biohazard_sign:"
+      channel: "{Slack}"
+      text: "`{Slack}"
+    content_format: json
+
++setup1: 
+  echo>: ${msgstart}
+
++step2:
+  echo>: start ${session_time}
+
++step3:
+  !include : 'retry.dig'
+  sh>: embulk run config.yml --log-level warn
+
+  _check:
+    sh>: echo "success!!"
+  _error:
+    sh>: echo "failure!!!"
+    
++step4:  
+  !include : 'retry.dig' 
+  sh>: rm -rf /work/.digdag/status/
+
+  _check:
+    sh>: echo "digdag log delete!! to .digdag/status"
+  _error:
+    sh>: echo "digdag log failure!!!"  
