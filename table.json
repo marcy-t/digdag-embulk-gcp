@@ -1,0 +1,56 @@
+[
+  {
+    "description": "id",
+    "name": "id",
+    "type": "integer",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "uuid",
+    "name": "uuid",
+    "type": "string",
+    "mode": "NULLABLE"
+  },
+  {
+     "description": "name",
+     "name": "name",
+     "type": "string",
+     "mode": "NULLABLE"
+   },
+   {
+    "description": "roman",
+    "name": "roman",
+    "type": "string",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "stat",
+    "name": "stat",
+    "type": "integer",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "source_type",
+    "name": "source_type",
+    "type": "integer",
+    "mode": "NULLABLE"
+  },    
+  {
+    "description": "deleted_at",
+    "name": "deleted_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "created_at",
+    "name": "created_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "updated_at",
+    "name": "updated_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  }
+ ]
